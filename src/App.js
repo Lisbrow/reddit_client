@@ -1,25 +1,19 @@
-import logo from './logo.svg';
+import React from 'react';
+import Header from './components/header/Header';
+import Subreddits from './components/subreddits/Subreddits';
+import Feed from './components/feed/Feed';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <div className="content">
+        <Subreddits />
+        <Feed />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
