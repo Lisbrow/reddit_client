@@ -14,7 +14,13 @@ const redditSlice = createSlice({
   initialState,
   reducers: {
     setPosts(state, action) {
-      state.posts = action.payload;
+      state.posts = action.payload.map((post) => ({
+        ...post,
+        showingComments: false,
+        comments: [],
+        loadingComments: false,
+        errorComments: false,
+      }));
     },
     startGetPosts(state) {
       state.isLoading = true;
@@ -36,26 +42,27 @@ const redditSlice = createSlice({
       state.searchTerm = '';
     },
     toggleShowingComments(state, action) {
-      state.posts[action.payload].showingComments = !state.posts[action.payload]
-        .showingComments;
+      if (state.posts[action.payload]) {
+        state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
+      }
     },
     startGetComments(state, action) {
-      // If we're hiding comment, don't fetch the comments.
-      state.posts[action.payload].showingComments = !state.posts[action.payload]
-        .showingComments;
-      if (!state.posts[action.payload].showingComments) {
-        return;
+      if (state.posts[action.payload]) {
+        state.posts[action.payload].loadingComments = true;
+        state.posts[action.payload].error = false;
       }
-      state.posts[action.payload].loadingComments = true;
-      state.posts[action.payload].error = false;
     },
     getCommentsSuccess(state, action) {
-      state.posts[action.payload.index].loadingComments = false;
-      state.posts[action.payload.index].comments = action.payload.comments;
+      if (state.posts[action.payload.index]) {
+        state.posts[action.payload.index].loadingComments = false;
+        state.posts[action.payload.index].comments = action.payload.comments;
+      }
     },
     getCommentsFailed(state, action) {
-      state.posts[action.payload].loadingComments = false;
-      state.posts[action.payload].error = true;
+      if (state.posts[action.payload]) {
+        state.posts[action.payload].loadingComments = false;
+        state.posts[action.payload].error = true;
+      }
     },
   },
 });
@@ -87,7 +94,7 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
       loadingComments: false,
       errorComments: false,
     }));
-    console.log('Fetched posts:', postsWithMetadata);
+    console.log('Fetched posts:', postsWithMetadata); // Debugging
     dispatch(getPostsSuccess(postsWithMetadata));
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -100,7 +107,9 @@ export const fetchComments = (index, permalink) => async (dispatch) => {
     dispatch(startGetComments(index));
     const comments = await getPostComments(permalink);
     dispatch(getCommentsSuccess({ index, comments }));
+    console.log(`Fetched comments for post ${index}:`, comments); // Debugging
   } catch (error) {
+    console.error('Error fetching comments:', error); // Debugging
     dispatch(getCommentsFailed(index));
   }
 };
