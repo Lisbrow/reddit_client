@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { formatDistanceToNow } from 'date-fns';
 import { toggleShowingComments, fetchComments } from '../../store/redditSlice';
 import Comment from '../comment/Comment';
 
@@ -8,10 +9,8 @@ const Post = ({ post, index }) => {
 
   const handleToggleComments = () => {
     if (!post.showingComments) {
-      console.log('Fetching comments for post:', index); // Debugging
       dispatch(fetchComments(index, post.permalink));
     }
-    console.log('Toggling comments for post:', index); // Debugging
     dispatch(toggleShowingComments(index));
   };
 
@@ -19,6 +18,9 @@ const Post = ({ post, index }) => {
     <div className="post">
       <h3>{post.title}</h3>
       <p>{post.selftext}</p>
+      <div>
+        <span>Posted by u/{post.author}</span> · <span>{formatDistanceToNow(new Date(post.created_utc * 1000))} ago</span>
+      </div>
       <div>
         <span>👍 {post.ups}</span>
         <span>👎 {post.downs}</span>
