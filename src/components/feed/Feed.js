@@ -1,12 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Post from '../post/Post';
-import { selectFilteredPosts } from '../../store/redditSlice';
+import { selectFilteredPosts, selectError } from '../../store/redditSlice';
 
 const Feed = () => {
   const posts = useSelector(selectFilteredPosts);
+  const error = useSelector(selectError);
 
-  console.log(posts); // Check if posts are populated
+  if (error) {
+    return <div>Error loading posts. Please try again later.</div>;
+  }
 
   return (
     <div className="feed">

@@ -94,11 +94,10 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
       loadingComments: false,
       errorComments: false,
     }));
-    console.log('Fetched posts:', postsWithMetadata); // Debugging
     dispatch(getPostsSuccess(postsWithMetadata));
   } catch (error) {
-    console.error('Error fetching posts:', error);
     dispatch(getPostsFailed());
+    console.error('Error fetching posts:', error);
   }
 };
 
@@ -107,12 +106,12 @@ export const fetchComments = (index, permalink) => async (dispatch) => {
     dispatch(startGetComments(index));
     const comments = await getPostComments(permalink);
     dispatch(getCommentsSuccess({ index, comments }));
-    console.log(`Fetched comments for post ${index}:`, comments); // Debugging
   } catch (error) {
-    console.error('Error fetching comments:', error); // Debugging
     dispatch(getCommentsFailed(index));
+    console.error('Error fetching comments:', error);
   }
 };
+
 
 const selectPosts = (state) => state.reddit.posts;
 const selectSearchTerm = (state) => state.reddit.searchTerm;
