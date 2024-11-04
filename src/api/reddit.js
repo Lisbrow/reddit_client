@@ -1,6 +1,6 @@
-import { getCachedData, setCachedData } from '../utils/cache';
+import { getCachedData, setCachedData } from "../utils/cache";
 
-export const API_ROOT = 'https://www.reddit.com';
+export const API_ROOT = "https://www.reddit.com";
 
 export const getSubredditPosts = async (subreddit) => {
   const cacheKey = `posts_${subreddit}`;
@@ -15,6 +15,12 @@ export const getSubredditPosts = async (subreddit) => {
   const posts = json.data.children.map((post) => post.data);
   setCachedData(cacheKey, posts);
   return posts;
+};
+
+export const getSubreddits = async () => {
+  const response = await fetch(`${API_ROOT}/subreddits.json`);
+  const json = await response.json();
+  return json.data.children.map((subreddit) => subreddit.data);
 };
 
 export const getPostComments = async (permalink) => {

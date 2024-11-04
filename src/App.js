@@ -16,9 +16,9 @@ const App = () => {
   }, [dispatch, selectedSubreddit]);
 
   return (
-    <div className="app">
+    <div className="App">
       <Header />
-      <div className="content">
+      <div className="Feed">
         <Subreddits />
         <Feed />
       </div>
