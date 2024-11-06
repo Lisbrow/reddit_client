@@ -12,7 +12,7 @@ const Subreddits = () => {
   }, [dispatch]);
 
   return (
-    <aside>
+    <div className="Subreddits">
       <h2>Popular Subreddits</h2>
       <ul>
         {subreddits.slice(0, 10).map((subreddit) => (
@@ -25,7 +25,7 @@ const Subreddits = () => {
           </li>
         ))}
       </ul>
-    </aside>
+    </div>
   );
 };
 

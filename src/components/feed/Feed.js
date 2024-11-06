@@ -12,7 +12,7 @@ const Feed = () => {
   }
 
   return (
-    <div className="feed">
+    <div className="Feed">
       {posts.map((post, index) => (
         <Post key={post.id} post={post} index={index} />
       ))}

@@ -15,13 +15,13 @@ const Post = ({ post, index }) => {
   };
 
   return (
-    <div className="post">
+    <div className="Post">
       <h3>{post.title}</h3>
       <p>{post.selftext}</p>
-      <div>
+      <div className="Author">
         <span>Posted by u/{post.author}</span> · <span>{formatDistanceToNow(new Date(post.created_utc * 1000))} ago</span>
       </div>
-      <div>
+      <div className="LikesDislikes">
         <span>👍 {post.ups}</span>
         <span>👎 {post.downs}</span>
         <span>💬 {post.num_comments}</span>
@@ -30,7 +30,7 @@ const Post = ({ post, index }) => {
         {post.showingComments ? 'Hide Comments' : 'Show Comments'}
       </button>
       {post.showingComments && (
-        <div className="comments">
+        <div className="ToggledComments">
           {post.comments.map((comment, i) => (
             <Comment key={i} comment={comment} />
           ))}

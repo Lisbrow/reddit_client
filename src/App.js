@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <div className="Feed">
+      <div className="Body">
         <Subreddits />
         <Feed />
       </div>
