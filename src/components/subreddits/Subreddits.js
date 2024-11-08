@@ -15,7 +15,7 @@ const Subreddits = () => {
     <div className="Subreddits">
       <h2>Popular Subreddits</h2>
       <ul>
-        {subreddits.slice(0, 10).map((subreddit) => (
+        {subreddits.slice(0, 20).map((subreddit) => (
           <li key={subreddit.id}>
             <button 
               onClick={() => dispatch(setSelectedSubreddit(subreddit.url))}
