@@ -1,8 +1,8 @@
 /* Color pallete */
 :root {
-  --color-1: #696969; /* DimGray - container background */
+  --color-1: #DCDCDC; /* Gainsboro - container background */
   --color-2: #880808; /* Blood Red - border, shadows, buttons, scrollbar */
-  --color-3: #DCDCDC; /* Gainsboro - main background */
+  --color-3: #696969; /* DimGray - main background */
   --color-4: #880808; /* Blood Red - accent */
   --color-5: #F9F6EE; /* Bone White - link hover */
   --color-6: #28282B; /* Matte Black - font */
@@ -20,7 +20,6 @@
 body,
 html,
 #root {
-  overflow: hidden;
   height: 100vh;
 }
 
@@ -39,49 +38,131 @@ a:hover {
 
 .Header {
   width: 100%;
-  padding: 0.5rem 0;
-  background-color: var(--color-1);
-  text-align: center;
+  height: 6rem;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.5rem 10rem;
   font-family: "Alegreya", serif;
   font-size: 2rem;
   color: var(--color-6);
+  background-color: var(--color-1);
   border-bottom: 1px var(--color-2) solid;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 3;
 }
 
-.Header .Highlight,
-.Icon,
 h2,
 h3 {
+  font-family: "Alegreya", serif;
   color: var(--color-4);
 }
 
 .Icon {
-  font-size: 1.5rem;
+  font-size: 2.8rem;
+  color: var(--color-4)
+}
+
+input {
+  background-color: var(--color-5);
+}
+
+button {
+  background-color: var(--color-2);
+  color: var(--color-5);
+  margin: 0.2rem;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: var(--color-3);
+}
+
+input, 
+button {
+  padding: 0.2rem 1rem;
+  font-family: "Gelasio", serif;
+  font-size: 1rem;
+  border: 2px solid var(--color-6);
+  box-shadow: 0;
 }
 
 .App {
   position: relative;
+  width: 100%;
   min-height: 100vh;
-  padding: 0 15rem;
   font-family: "Gelasio", serif;
   color: var(--color-6);
+  background-color: var(--color-3);
   z-index: 1;
 }
 
-.content {
+.Body {
+  top: 6rem;
+  width: 100%;
+  padding: 0 25rem;
+  position: relative;
   display: flex;
   flex-direction: row;
-  width: 100%;
   justify-content: space-between;
 }
 
-aside {
+.Subreddits {
+  top: 7rem;
+  min-width: fit-content;
   width: 20%;
-  padding: 1em;
+  height: 100%;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  position: sticky;
+  background-color: var(--color-1);
+  border: 1px var(--color-2) solid;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 3;
 }
 
-.feed {
-  width: 75%;
-  padding: 1em;
+.Subreddits ul { 
+  list-style-type: none; 
+}
+
+.Subreddits button {
+  width: 100%;
+}
+
+.Feed {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: var(--color-1);
+  text-align: left;
+}
+
+.PostStats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.LikesDislikes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.SmallIcon {
+  margin: 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-2);
+}
+
+.LikesDislikes button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
