@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { formatDistanceToNow } from 'date-fns';
+import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 
 const Comment = ({ comment }) => {
   const components = {
@@ -14,17 +16,23 @@ const Comment = ({ comment }) => {
     return <div>Invalid date</div>;
   }
 
-  // Function to check if the comment contains the word "gif" or "preview.redd.it"
-  const containsDisallowedContent = (text) => { return text.toLowerCase().includes('gif') || text.toLowerCase().includes('preview.redd.it'); }; 
-  
-  // Skip rendering if the comment contains disallowed content 
-  if (containsDisallowedContent(comment.body)) { return null; }
+  // Function to check if the comment contains the word "gif"
+  const containsGifWord = (text) => {
+    return text.toLowerCase().includes('gif');
+  };
+
+  // Skip rendering if the comment contains the word "gif"
+  if (containsGifWord(comment.body)) {
+    return null;
+  }
 
   return (
-    <div className="comment">
-      <ReactMarkdown components={components}>{comment.body}</ReactMarkdown>
+    <div className="Comment">
+      <ReactMarkdown components={components} remarkPlugins={[remarkGfm, remarkBreaks]}>{comment.body}</ReactMarkdown>
       <div>
-        <span>Comment by u/{comment.author}</span> · <span>{formatDistanceToNow(createdDate)} ago</span>
+        <span className="Author">u/{comment.author}</span>
+        <span className="Break"> || </span>
+        <span className="TimeAgo">{formatDistanceToNow(createdDate)} ago</span>
       </div>
     </div>
   );

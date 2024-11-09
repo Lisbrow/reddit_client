@@ -1,9 +1,9 @@
 /* Color pallete */
 :root {
-  --color-1: #DCDCDC; /* Gainsboro - container background */
-  --color-2: #880808; /* Blood Red - border, shadows, buttons, scrollbar */
-  --color-3: #696969; /* DimGray - main background */
-  --color-4: #880808; /* Blood Red - accent */
+  --color-1: #696969; /* DimGray - main background */
+  --color-2: #DCDCDC; /* Gainsboro - container background */
+  --color-3: #EDEDED; /* Lighter Gainsboro - lighter container background */
+  --color-4: #880808; /* Blood Red - accent, border, buttons, scrollbar */
   --color-5: #F9F6EE; /* Bone White - link hover */
   --color-6: #28282B; /* Matte Black - font */
 }
@@ -48,10 +48,33 @@ a:hover {
   font-family: "Alegreya", serif;
   font-size: 2rem;
   color: var(--color-6);
-  background-color: var(--color-1);
-  border-bottom: 1px var(--color-2) solid;
+  background-color: var(--color-2);
+  border-bottom: 1px var(--color-4) solid;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 3;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-inner {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.popup-inner button {
+  margin-top: 10px;
 }
 
 h2,
@@ -70,7 +93,7 @@ input {
 }
 
 button {
-  background-color: var(--color-2);
+  background-color: var(--color-4);
   color: var(--color-5);
   margin: 0.2rem;
   cursor: pointer;
@@ -78,7 +101,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--color-3);
+  background-color: var(--color-1);
 }
 
 input, 
@@ -96,7 +119,7 @@ button {
   min-height: 100vh;
   font-family: "Gelasio", serif;
   color: var(--color-6);
-  background-color: var(--color-3);
+  background-color: var(--color-1);
   z-index: 1;
 }
 
@@ -112,14 +135,13 @@ button {
 
 .Subreddits {
   top: 7rem;
-  min-width: fit-content;
-  width: 20%;
+  width: fit-content;
   height: 100%;
   padding: 1rem 2rem;
   margin: 1rem;
   position: sticky;
-  background-color: var(--color-1);
-  border: 1px var(--color-2) solid;
+  background-color: var(--color-2);
+  border: 1px var(--color-4) solid;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 3;
 }
@@ -134,16 +156,51 @@ button {
 
 .Feed {
   position: relative;
+  width: 70%;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: none;
+}
+
+
+.Post, .Comment, .NoResults {
   width: 100%;
   padding: 1rem;
-  margin: 1rem;
-  background-color: var(--color-1);
-  text-align: left;
+  border: 1px solid var(--color-4);
+  text-align: justify;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.NoResults {
+  text-align: center;
+}
+
+.Post, .NoResults {
+  background-color: var(--color-2);
+}
+
+.Post img, .Post video {
+  width: 100%;
+  border: 1px solid var(--color-4);
 }
 
 .PostStats {
   display: flex;
   justify-content: space-between;
+}
+
+.Author {
+  font-weight: bold;
+}
+
+.Break {
+  color: rgba(136, 8, 8, 0.7);
+}
+
+.TimeAgo {
+  color: rgba(40, 40, 43, 0.7);
 }
 
 .LikesDislikes {
@@ -156,7 +213,7 @@ button {
 .SmallIcon {
   margin: 0 0.4rem;
   font-size: 0.8rem;
-  color: var(--color-2);
+  color: var(--color-4);
 }
 
 .LikesDislikes button {
@@ -165,4 +222,27 @@ button {
   cursor: pointer;
   margin: 0;
   padding: 0;
+}
+
+.ToggledComments {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ToggledComments:first-child {
+  padding-top: 1rem;
+}
+
+.Loading {
+  color: rgba(40, 40, 43, 0.7);
+}
+
+.Comment {
+  background-color: var(--color-3);
+  
+}
+
+.Comment h2 {
+  font-size: 1.2rem;
 }
