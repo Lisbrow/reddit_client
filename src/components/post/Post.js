@@ -72,7 +72,7 @@ const Post = ({ post, index }) => {
   return (
     <div className="Post">
       <h4>r/{post.subreddit}</h4>
-      <h2>{post.title}</h2>
+      <h3>{post.title}</h3>
       <div className="PostContent">
       {post.url && isImageUrl(post.url) && (
         <img src={post.url} alt={post.title} />
@@ -97,7 +97,7 @@ const Post = ({ post, index }) => {
           <span className="TimeAgo">{formatDistanceToNow(new Date(post.created_utc * 1000))} ago
           </span>
         </div>
-        <div className="LikesDislikes">
+        <div className="PostActions">
           <span><BsFillHandThumbsUpFill className="SmallIcon" />{post.ups}</span>
           <span><BsFillHandThumbsDownFill className="SmallIcon" />{post.downs}</span>
           <span>

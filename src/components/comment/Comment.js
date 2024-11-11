@@ -29,7 +29,7 @@ const Comment = ({ comment }) => {
   return (
     <div className="Comment">
       <ReactMarkdown components={components} remarkPlugins={[remarkGfm, remarkBreaks]}>{comment.body}</ReactMarkdown>
-      <div>
+      <div className="CommentStats">
         <span className="Author">u/{comment.author}</span>
         <span className="Break"> || </span>
         <span className="TimeAgo">{formatDistanceToNow(createdDate)} ago</span>
