@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { formatDistanceToNow } from "date-fns";
@@ -12,8 +12,6 @@ import Comment from "../comment/Comment";
 
 const Post = ({ post, index }) => {
   const dispatch = useDispatch();
-  const [likes, setLikes] = useState(post.ups);
-  const [dislikes, setDislikes] = useState(post.downs);
   const loadingComments = useSelector(state => state.reddit.posts[index].loadingComments);
 
   const handleToggleComments = () => {
@@ -21,14 +19,6 @@ const Post = ({ post, index }) => {
       dispatch(fetchComments(index, post.permalink));
     }
     dispatch(toggleShowingComments(index));
-  };
-
-  const handleLike = () => {
-    setLikes(likes + 1);
-  };
-
-  const handleDislike = () => {
-    setDislikes(dislikes + 1);
   };
 
   // Function to check if the URL is an image
@@ -108,18 +98,8 @@ const Post = ({ post, index }) => {
           </span>
         </div>
         <div className="LikesDislikes">
-          <span>
-            <button onClick={handleLike}>
-              <BsFillHandThumbsUpFill className="SmallIcon" />
-            </button>
-            {likes}
-          </span>
-          <span>
-            <button onClick={handleDislike}>
-              <BsFillHandThumbsDownFill className="SmallIcon" />
-            </button>
-            {dislikes}
-          </span>
+          <span><BsFillHandThumbsUpFill className="SmallIcon" />{post.ups}</span>
+          <span><BsFillHandThumbsDownFill className="SmallIcon" />{post.downs}</span>
           <span>
             <button onClick={handleToggleComments}>
               <BsChatFill className="SmallIcon" />
