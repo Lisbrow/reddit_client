@@ -7,6 +7,7 @@ const Feed = () => {
   const posts = useSelector(selectFilteredPosts);
   const error = useSelector(selectError);
   const [noResults, setNoResults] = useState(false);
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
     if (posts.length === 0) {
@@ -16,6 +17,10 @@ const Feed = () => {
     }
   }, [posts]);
 
+  useEffect(() => {
+    setFilteredPosts(posts);
+  }, [posts]);
+
   if (error) {
     return <div>Error loading posts. Please try again later.</div>;
   }
@@ -23,8 +28,8 @@ const Feed = () => {
   return (
     <div className="Feed">
       {noResults && <div className="NoResults"><h3>Couldn't find what you are looking for</h3></div>}
-      {posts.map((post, index) => (
-        <Post key={post.id} post={post} index={index} />
+      {filteredPosts.map((post, index) => (
+        <Post key={post.id} post={post} index={index} showing={true} />
       ))}
     </div>
   );

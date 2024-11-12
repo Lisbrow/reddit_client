@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { formatDistanceToNow } from 'date-fns';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, showing }) => {
+  const [slideId, setSlideId] = useState("SlideDown");
+
+  useEffect(() => {
+    if (showing) {
+      setSlideId("SlideDown");
+    } else {
+      setSlideId("SlideUp");
+    }
+  }, [showing]);
+
   const components = {
     img: ({ alt, src }) => <img alt={alt} src={src} style={{ maxWidth: '100%' }} />,
     a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
@@ -16,18 +26,14 @@ const Comment = ({ comment }) => {
     return <div>Invalid date</div>;
   }
 
-  // Function to check if the comment contains the word "gif"
-  const containsGifWord = (text) => {
-    return text.toLowerCase().includes('gif');
-  };
+  const containsGifWord = (text) => text.toLowerCase().includes('gif');
 
-  // Skip rendering if the comment contains the word "gif"
   if (containsGifWord(comment.body)) {
     return null;
   }
 
   return (
-    <div className="Comment">
+    <div id={slideId} className="Comment">
       <ReactMarkdown components={components} remarkPlugins={[remarkGfm, remarkBreaks]}>{comment.body}</ReactMarkdown>
       <div className="CommentStats">
         <span className="Author">u/{comment.author}</span>
