@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# Readdit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Preview](redditClientScreenshot.png)
 
-## Available Scripts
+Readdit is a React web application that uses the Reddit API to allow users to search, browse, and explore Reddit posts. The app features a responsive design and a cohesive user experience, leveraging React and Redux for state management.
 
-In the project directory, you can run:
+## Table of Contents
+- [Readdit](#readdit)
+  - [Table of Contents](#table-of-contents)
+  - [Purpose](#purpose)
+  - [Features](#features)
+  - [Technologies](#technologies)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [Usage](#usage)
+  - [Testing](#testing)
+  - [Future Work](#future-work)
+  - [Acknowledgements](#acknowledgements)
 
-### `npm start`
+## Purpose
+This project was developed to practice building a full-stack application using React and Redux. It integrates with the Reddit API to provide a platform where users can search for posts, filter results, and view detailed information. The main objective was to create a responsive, engaging user interface with smooth navigation and data handling.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
+- Users can search for Reddit posts by keywords.
+- Users can filter posts based on predefined categories (e.g., Hot, New, Top).
+- Users can view detailed information about each post, including the title, author, and comments.
+- Responsive design ensures a smooth experience on both desktop and mobile devices.
+- Cohesive design system with animations and transitions for an enhanced user experience.
+- Error handling provides meaningful feedback if something goes wrong.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies
+- React.js
+- Redux for state management
+- React Router for navigation
+- Reddit API for data integration
+- React Testing Library for component testing
+- Redux Mock Store for testing Redux actions and reducers
+- Jest for unit and integration testing
+- JavaScript, HTML, and CSS for the frontend
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+Before you begin, ensure you have the following:
+- Node.js installed on your machine
 
-### `npm run build`
+### Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Lisbrow/reddit_client.git
+    cd reddit_client
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Start the development server:
+    ```bash
+    npm start
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
+1. Open your browser and navigate to `http://localhost:3000/` to view the app locally or [https://lisbrow.github.io/reddit_client](https://lisbrow.github.io/reddit_client/) to view the live demo.
+2. Browse the home feed to see popular Reddit posts.
+3. Use the search bar to look up specific posts or topics.
+4. Click on the chat bubble icon to view comments.
+5. Use category filters (Popular, Rising, All) to explore posts based on popularity or recency.
 
-### `npm run eject`
+## Testing
+The application includes unit and integration tests using Jest, React Testing Library, and Redux Mock Store.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. To run the tests:
+    ```bash
+    npm test
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **React Testing Library** is used for testing React components and user interactions.
+3. **Redux Mock Store** is used to mock the Redux store for testing actions and reducers without relying on the actual Redux store.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Future Work
+- **User Authentication**: Allow users to log in and interact with posts (upvote, comment).
+- **Infinite Scrolling**: Implement infinite scroll for a smoother browsing experience.
+- **Dark Mode**: Add a dark theme option for better accessibility.
+- **Advanced Filtering**: Enable filtering by subreddit, post age, or user-defined categories.
+- **Improved Error Handling**: Provide retry options and clearer error messages.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgements
+- [Reddit API](https://www.reddit.com/dev/api/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Jest](https://jestjs.io/)
+- [Redux Mock Store](https://github.com/reduxjs/redux-mock-store)

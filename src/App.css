@@ -40,6 +40,10 @@ a:hover {
   color: var(--color-1);
 }
 
+body {
+  background-color: var(--color-1);
+}
+
 .Header {
   width: 100%;
   height: 6rem;
@@ -98,7 +102,6 @@ button {
   min-height: 100vh;
   font-family: "Gelasio", serif;
   color: var(--color-6);
-  background-color: var(--color-1);
   z-index: 1;
 }
 
